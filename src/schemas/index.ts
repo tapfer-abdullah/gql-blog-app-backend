@@ -8,6 +8,7 @@ const typeDefs = `#graphql
     updatedAt: String
     publishedAt: String
     profile: Profile
+    posts: [Post]
   }
 
   type Profile {
@@ -25,17 +26,12 @@ const typeDefs = `#graphql
     content: String
     authorId: Int!
     author: User
-    published: Boolean
+    published: String
     publishedAt: String
     createdAt: String
     updatedAt: String
   }
 
-  type authResponse {
-    token: String
-    message: String
-    success: Boolean
-  }
 
   type Query {
     users: [User!]
@@ -46,11 +42,41 @@ const typeDefs = `#graphql
 
     posts: [Post!]
     post(id: Int!): Post
+    myPosts: postResponse
   }
 
   type Mutation {
     signup(name: String!, email: String!, password: String!, bio: String): authResponse,
     signin(email: String!, password: String!): authResponse,
+
+    addPost(post: postPayload!): addPostResponse,
+    updatePost(postId: Int!, post: postPayload!): addPostResponse,
+    updatePostStatus(postId: Int!, published: String!): addPostResponse,
+    deletePost(postId: Int!): addPostResponse,
+  }
+
+
+   type authResponse {
+    token: String
+    message: String
+    success: Boolean
+  }
+  
+  type addPostResponse {
+    data: Post
+    message: String
+    success: Boolean
+  }
+
+  type postResponse {
+    data: [Post]
+    message: String
+    success: Boolean
+  }
+
+  input postPayload {
+    title: String, 
+    content: String
   }
 `;
 

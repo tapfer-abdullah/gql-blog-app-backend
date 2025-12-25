@@ -28,7 +28,7 @@ model Post {
   authorId    Int
   author      User       @relation(fields: [authorId], references: [id])
   published   PostStatus @default(Draft)
-  publishedAt DateTime
+  publishedAt DateTime?
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
 
