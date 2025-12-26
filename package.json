@@ -9,6 +9,10 @@
     "postinstall": "prisma generate",
     "build": "prisma generate && tsc"
   },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
