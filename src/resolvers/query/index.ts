@@ -19,7 +19,7 @@ export const Query = {
   posts: async () => {
     return await prisma.post.findMany({
       where: {
-        // published: "Published",
+        published: "Published",
       },
       orderBy: {
         createdAt: "desc",
