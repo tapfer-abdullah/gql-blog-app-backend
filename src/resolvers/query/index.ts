@@ -1,3 +1,4 @@
+import { userLoader } from "../../dataLoader/userLoader.js";
 import { prisma } from "../../lib/prisma.js";
 
 export const Query = {
@@ -18,7 +19,7 @@ export const Query = {
   posts: async () => {
     return await prisma.post.findMany({
       where: {
-        published: "Published",
+        // published: "Published",
       },
       orderBy: {
         createdAt: "desc",
@@ -89,6 +90,7 @@ export const User = {
 
 export const Post = {
   author: async (parent: any, args: any, context: any) => {
-    return await prisma.user.findUnique({ where: { id: parent.authorId } });
+    // return await prisma.user.findUnique({ where: { id: parent.authorId } });
+    return await userLoader.load(parent.authorId);
   },
 };
